@@ -10,7 +10,7 @@ interface Pokemon {
 export const pokemon1: Pokemon = {
     id: 1,
     nombre: "Charmander",
-    age:1
+    
 }
 
 export const pokemon2: Pokemon = {
@@ -18,6 +18,7 @@ export const pokemon2: Pokemon = {
     nombre: "Bulbasaur",
     age:1
 }
+
 
 export const pockemons: Pokemon[] = []
 

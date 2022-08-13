@@ -1,44 +1,44 @@
 
-import { pokeApiAdapter } from '../api/poke-api.adapter';
+import axios from 'axios';
 
 export class Pokemon {
 
-    get imagenUrl(): string {
-        return `https://pokemon.com/${this.id}.jpg`
+    get imageUrl(): string {
+        return `https://pokemon.com/${ this.id }.jpg`;
     }
-    constructor(public readonly id: number,
+  
+    constructor(
+        public readonly id: number, 
         public name: string,
-        private readonly http: pokeApiAdapter
-        ) { }
+        // public imageUrl: string,
+    ) {}
 
     scream() {
-        console.log(`${this.name.toUpperCase()}`);
-        this.speak()
+        console.log(`${ this.name.toUpperCase() }!!!`);
     }
 
-    private speak() {
-        console.log(`${this.id}, ${this.name}`);
-
+    speak() {
+        console.log(`${ this.name }, ${ this.name }`);
     }
-    async moves() {
-        const moves = await this.http.get('https://pokeapi.co/api/v2/pokemon/4')
-        console.log(moves.data);
+
+    async getMoves() {
+        // const moves = 10;
+        const { data } = await axios.get('https://pokeapi.co/api/v2/pokemon/4');
+        console.log( data.moves );
+        
+        return data.moves;
     }
 
 }
-const pokeApi = new pokeApiAdapter()
-export const charmander = new Pokemon(1, 'Charmander', pokeApi)
 
-// readonly no se puede modificar la propiedad
-// ---------
-// charmander.id = 200
-//--------
-charmander.name = 'Pedro'
+export const charmander = new Pokemon( 4, 'Charmander' );
 
-console.log(charmander.imagenUrl);
+// charmander.id = 10;
+// charmander.name = 'Mew';
+// console.log(charmander.imageUrl);
 
-console.log(charmander.scream());
+// charmander.scream();
+// charmander.speak();
 
-charmander.moves()
-
-
+// console.log( charmander.getMoves() );
+charmander.getMoves();
